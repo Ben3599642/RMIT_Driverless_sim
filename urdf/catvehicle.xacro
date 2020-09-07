@@ -256,10 +256,11 @@ http://www.car-engineer.com/vehicle-inertia-calculation-tool/
 
     <link name="back_right_wheel_link">
         <collision>
-            <origin xyz="0 0 0" rpy="0 0 -${PI}"/>
+            <!--origin xyz="0 0 0" rpy="0 0 -${PI}"/-->
+	    <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
             <geometry>
-                <!--<cylinder length="${tyre_length}" radius="${tyre_radius}"/-->
-                <mesh filename="package://catvehicle/meshes/EE88_wheel2.dae"/>
+                <cylinder length="${tyre_length}" radius="${tyre_radius}"/>
+                <!--mesh filename="package://catvehicle/meshes/EE88_wheel2.dae"/-->
             </geometry>
             <surface>
                 <friction>
@@ -316,10 +317,11 @@ http://www.car-engineer.com/vehicle-inertia-calculation-tool/
 
     <link name="back_left_wheel_link">
         <collision>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <!--origin xyz="0 0 0" rpy="0 0 0"/-->
+	    <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
             <geometry>
-                <!--cylinder length="${tyre_length}" radius="${tyre_radius}"/-->
-                <mesh filename="package://catvehicle/meshes/EE88_wheel2.dae"/>
+                <cylinder length="${tyre_length}" radius="${tyre_radius}"/>
+                <!--mesh filename="package://catvehicle/meshes/EE88_wheel2.dae"/-->
             </geometry>
             <surface>
                 <friction>
@@ -412,11 +414,11 @@ http://www.car-engineer.com/vehicle-inertia-calculation-tool/
 
     <link name="front_right_wheel_link">
         <collision>
-            <!--origin xyz="0 0 0" rpy="${PI/2} 0 0"/-->
-            <origin xyz="0 0.10 0" rpy="0 0 ${-PI}"/>
+            <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
+            <!--origin xyz="0 0.10 0" rpy="0 0 ${-PI}"/-->
             <geometry>
-                <!--cylinder length="${tyre_length}" radius="${tyre_radius}"/-->
-                <mesh filename="package://catvehicle/meshes/EE88_wheel2.dae"/>
+                <cylinder length="${tyre_length}" radius="${tyre_radius}"/>
+                <!--mesh filename="package://catvehicle/meshes/EE88_wheel2.dae"/-->
             </geometry>
 
             <surface>
@@ -512,11 +514,11 @@ http://www.car-engineer.com/vehicle-inertia-calculation-tool/
     <link name="front_left_wheel_link">
         <parent link="front_left_wheel_joint"/>
         <collision>
-            <!--origin xyz="0 0 0" rpy="${PI/2} 0 0"/-->
-            <origin xyz="0 -0.10 0" rpy="0 0 0"/>
+            <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
+            <!--origin xyz="0 -0.10 0" rpy="0 0 0"/-->
             <geometry>
-                <!--cylinder length="${tyre_length}" radius="${tyre_radius}"/-->
-                <mesh filename="package://catvehicle/meshes/EE88_wheel2.dae"/>
+                <cylinder length="${tyre_length}" radius="${tyre_radius}"/>
+                <!--<mesh filename="package://catvehicle/meshes/EE88_wheel2.dae"/>-->
             </geometry>
             <surface>
                 <friction>
