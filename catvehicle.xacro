@@ -86,12 +86,21 @@ http://www.car-engineer.com/vehicle-inertia-calculation-tool/
 
     <!-- Inertial tensor of car body has been taken from meshlab after
     analyzing the 3D structure of car body -->
+    <!-- old inertias 
     <xacro:property name="base_mass_ixx" value="347.195805"/>
     <xacro:property name="base_mass_ixy" value="-11.4914985"/>
     <xacro:property name="base_mass_ixz" value="18.5070628"/>
     <xacro:property name="base_mass_iyy" value="2330.10026"/>
     <xacro:property name="base_mass_iyz" value="3.97814264"/>
     <xacro:property name="base_mass_izz" value="2529.41827"/>
+    -->
+<!-- estimated sprung inertia of the 2019 racing vehicle-->
+    <xacro:property name="base_mass_ixx" value="19.118"/>
+    <xacro:property name="base_mass_ixy" value="-1.36778"/>
+    <xacro:property name="base_mass_ixz" value="-10.4111"/>
+    <xacro:property name="base_mass_iyy" value="111.9943"/>
+    <xacro:property name="base_mass_iyz" value="0.1475"/>
+    <xacro:property name="base_mass_izz" value="108.489"/>
 
     <!--changed all of these, here are the originals
      <xacro:property name="tyre_x" value="1.05"/>
@@ -247,10 +256,11 @@ http://www.car-engineer.com/vehicle-inertia-calculation-tool/
 
     <link name="back_right_wheel_link">
         <collision>
-            <origin xyz="0 0 0" rpy="0 0 -${PI}"/>
+            <!--origin xyz="0 0 0" rpy="0 0 -${PI}"/-->
+	    <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
             <geometry>
-                <!--<cylinder length="${tyre_length}" radius="${tyre_radius}"/-->
-                <mesh filename="package://catvehicle/meshes/EE88_wheel2.dae"/>
+                <cylinder length="${tyre_length}" radius="${tyre_radius}"/>
+                <!--mesh filename="package://catvehicle/meshes/EE88_wheel2.dae"/-->
             </geometry>
             <surface>
                 <friction>
@@ -307,10 +317,11 @@ http://www.car-engineer.com/vehicle-inertia-calculation-tool/
 
     <link name="back_left_wheel_link">
         <collision>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <!--origin xyz="0 0 0" rpy="0 0 0"/-->
+	    <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
             <geometry>
-                <!--cylinder length="${tyre_length}" radius="${tyre_radius}"/-->
-                <mesh filename="package://catvehicle/meshes/EE88_wheel2.dae"/>
+                <cylinder length="${tyre_length}" radius="${tyre_radius}"/>
+                <!--mesh filename="package://catvehicle/meshes/EE88_wheel2.dae"/-->
             </geometry>
             <surface>
                 <friction>
@@ -403,11 +414,11 @@ http://www.car-engineer.com/vehicle-inertia-calculation-tool/
 
     <link name="front_right_wheel_link">
         <collision>
-            <!--origin xyz="0 0 0" rpy="${PI/2} 0 0"/-->
-            <origin xyz="0 0.10 0" rpy="0 0 ${-PI}"/>
+            <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
+            <!--origin xyz="0 0.10 0" rpy="0 0 ${-PI}"/-->
             <geometry>
-                <!--cylinder length="${tyre_length}" radius="${tyre_radius}"/-->
-                <mesh filename="package://catvehicle/meshes/EE88_wheel2.dae"/>
+                <cylinder length="${tyre_length}" radius="${tyre_radius}"/>
+                <!--mesh filename="package://catvehicle/meshes/EE88_wheel2.dae"/-->
             </geometry>
 
             <surface>
@@ -503,11 +514,11 @@ http://www.car-engineer.com/vehicle-inertia-calculation-tool/
     <link name="front_left_wheel_link">
         <parent link="front_left_wheel_joint"/>
         <collision>
-            <!--origin xyz="0 0 0" rpy="${PI/2} 0 0"/-->
-            <origin xyz="0 -0.10 0" rpy="0 0 0"/>
+            <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
+            <!--origin xyz="0 -0.10 0" rpy="0 0 0"/-->
             <geometry>
-                <!--cylinder length="${tyre_length}" radius="${tyre_radius}"/-->
-                <mesh filename="package://catvehicle/meshes/EE88_wheel2.dae"/>
+                <cylinder length="${tyre_length}" radius="${tyre_radius}"/>
+                <!--<mesh filename="package://catvehicle/meshes/EE88_wheel2.dae"/>-->
             </geometry>
             <surface>
                 <friction>
