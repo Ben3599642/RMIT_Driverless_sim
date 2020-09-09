@@ -212,6 +212,7 @@ http://www.car-engineer.com/vehicle-inertia-calculation-tool/
             <origin xyz="0 0 ${base_height}" rpy="0 0 0"/>
             <geometry>
                 <mesh filename="package://catvehicle/meshes/EE88_2.dae"/>
+            <!--<box size="${camera_box} ${camera_box} ${camera_box}"/>  very small box collision for the vehicle to improve gazebo sim times-->
             </geometry>
         </collision>
         <visual>
