@@ -40,7 +40,7 @@ roslaunch catvehicle catvehicle_skidpan.launch
 	  <arg name="gui" default="false"/>
 	  <arg name="headless" default="false"/>
 	  <arg name="debug" default="false"/>
-      <arg name="obstaclestopper" default="true"/>
+      <arg name="obstaclestopper" default="false"/>
 
 <param name="use_sim_time" value="true"/>
 

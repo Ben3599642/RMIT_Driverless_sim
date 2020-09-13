@@ -14,7 +14,7 @@ This launch file loads the worlds and models for the catvehicle
 	  <arg name="gui" default="false"/>
 	  <arg name="headless" default="false"/>
 	  <arg name="debug" default="false"/>
-      <arg name="obstaclestopper" default="true"/>
+      <arg name="obstaclestopper" default="false"/>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find catvehicle)/worlds/small_track.world"/>

@@ -14,7 +14,7 @@ This launch file loads the worlds and models for the catvehicle
 	  <arg name="gui" default="false"/>
 	  <arg name="headless" default="false"/>
 	  <arg name="debug" default="false"/>
-      <arg name="obstaclestopper" default="true"/>
+          <arg name="obstaclestopper" default="false"/>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find catvehicle)/worlds/acceleration.world"/>
@@ -23,6 +23,7 @@ This launch file loads the worlds and models for the catvehicle
     <arg name="paused" value="$(arg paused)"/>
     <arg name="use_sim_time" value="$(arg use_sim_time)"/>
     <arg name="headless" value="$(arg headless)"/>
+    <remap from="tf" to="gazebo_tf"/>
   </include>
 
 <group ns="catvehicle">
@@ -30,7 +31,7 @@ This launch file loads the worlds and models for the catvehicle
          command="$(find xacro)/xacro.py '$(find catvehicle)/urdf/catvehicle.xacro' roboname:='catvehicle'" />
 <include file="$(find catvehicle)/launch/catvehicle.launch">
     <arg name="robot_name" value="catvehicle"/>
-    <arg name="obstaclestopper" value="$(arg obstaclestopper)"/>
+    <arg name="obstaclestopper" value="false"/>
     <arg name="init_pose" value="-x 0 -y 0 -z 0.5"/>
     <arg name="config_file" value="catvehicle_control.yaml"/>
 </include>

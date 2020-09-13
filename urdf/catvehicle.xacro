@@ -43,6 +43,7 @@ http://www.car-engineer.com/vehicle-inertia-calculation-tool/
     <xacro:arg name="velodyne_points" default="true"/>
     <xacro:arg name="laser_points" default="true"/>
     <xacro:arg name="imu" default="true"/>
+    <xacro:arg name="gps" default="true"/>
 
     <xacro:property name="velodyne_points" value="$(arg velodyne_points)"/>
     <xacro:property name="laser_points" value="$(arg laser_points)"/>
@@ -50,6 +51,7 @@ http://www.car-engineer.com/vehicle-inertia-calculation-tool/
     <xacro:property name="camera_left" value="$(arg camera_left)"/>
     <xacro:property name="triclops" value="$(arg triclops)"/>
     <xacro:property name="imu" value="$(arg imu)"/>
+    <xacro:property name="gps" value="$(arg gps)"/>
     <xacro:property name="camera_box" value="0.1"/>
     <xacro:property name="sensor_box" value="0.25"/>
 
@@ -86,7 +88,7 @@ http://www.car-engineer.com/vehicle-inertia-calculation-tool/
 
     <!-- Inertial tensor of car body has been taken from meshlab after
     analyzing the 3D structure of car body -->
-    <!-- old inertias 
+    <!-- old inertias
     <xacro:property name="base_mass_ixx" value="347.195805"/>
     <xacro:property name="base_mass_ixy" value="-11.4914985"/>
     <xacro:property name="base_mass_ixz" value="18.5070628"/>
@@ -173,7 +175,7 @@ http://www.car-engineer.com/vehicle-inertia-calculation-tool/
     <xacro:include filename="$(find catvehicle)/urdf/catvehicle.gazebo"/>
 
 
-    <xacro:if value="${velodyne_points}"> 
+    <xacro:if value="${velodyne_points}">
         <!-- You can pass parameters in order to change the max/min
         horizontal angles of the velodyne sensors. These are interpreted
         in the velodyne_points gazebo file -->
@@ -205,6 +207,10 @@ http://www.car-engineer.com/vehicle-inertia-calculation-tool/
         <xacro:include filename="$(find catvehicle)/urdf/catvehicle_imu.gazebo"/>
     </xacro:if>
 
+    <xacro:if value="${gps}">
+        <xacro:include filename="$(find catvehicle)/urdf/catvehicle_gps.gazebo"/>
+    </xacro:if> 
+
     <!--Car Body-->
 
     <link name="base_link">
@@ -227,13 +233,13 @@ http://www.car-engineer.com/vehicle-inertia-calculation-tool/
     <joint name="inertial_joint" type="fixed">
         <parent link="base_link"/>
         <child link="main_mass"/>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="${car_COM_x} ${car_COM_y} ${car_COM_z}" rpy="0 0 0"/>
     </joint>
 
     <link name="main_mass" type="fixed">
         <parent link="inertial_joint"/>
         <inertial>
-            <origin xyz="${car_COM_x} ${car_COM_y} ${car_COM_z}" rpy="0 0 0"/> <!-- This is the center of mass of Car Body-->
+            <origin xyz="0 0 0" rpy="0 0 0"/> <!-- This is the center of mass of Car Body-->
             <mass value="${base_mass}"/>
             <inertia
             ixx="${base_mass_ixx}"  ixy="${base_mass_ixy}" ixz="${base_mass_ixz}"
@@ -563,9 +569,9 @@ http://www.car-engineer.com/vehicle-inertia-calculation-tool/
 
 
     <!-- front laser-->
-	
+
     <joint name="front_laser_joint" type="fixed">
-        <origin xyz="${car_to_bumper + 0.1} 0 ${front_bumper_height + 0.15}" rpy="0 0 0"/>
+        <origin xyz="${car_to_bumper + 0.1} 0 ${front_bumper_height - 0.25}" rpy="0 0 0"/>
         <axis xyz="0 0 1"/>
         <parent link="base_link"/>
         <child link="front_laser_link"/>
@@ -577,7 +583,7 @@ http://www.car-engineer.com/vehicle-inertia-calculation-tool/
                 <origin xyz="0 0 0" rpy="0 0.0 0"/>
                 <geometry>
                     <box size="0.01 0.01 0.01"/>
-                </geometry> 
+                </geometry>
             </collision>
 
             <visual>
@@ -674,7 +680,7 @@ http://www.car-engineer.com/vehicle-inertia-calculation-tool/
     <link name="triclops_link_optical">
     </link>
 
-	
+
     <link name="triclops_link">
         <collision>
           <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -697,9 +703,9 @@ http://www.car-engineer.com/vehicle-inertia-calculation-tool/
         </inertial>
     </link>
 
-	
+
         <joint name="velodyne_joint" type="fixed">
-            <origin xyz="${car_to_bumper + 0.05} 0 ${front_bumper_height + 0.1}" rpy="0 0 0"/>
+            <origin xyz="${car_to_bumper + 0.05} 0 ${front_bumper_height - 0.1}" rpy="0 0 0"/>
             <axis xyz="0 0 1"/>
             <parent link="base_link"/>
             <child link="velodyne_link"/>

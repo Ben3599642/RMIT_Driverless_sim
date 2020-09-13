@@ -8,7 +8,7 @@
       <visualize>true</visualize>
       <topic>imu</topic>
       <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
-        <topicName>/$(arg roboname)/imu</topicName>
+        <topicName>/imu</topicName>
         <bodyName>imu_link</bodyName>
         <updateRateHZ>50.0</updateRateHZ>
         <gaussianNoise>0.0</gaussianNoise>
