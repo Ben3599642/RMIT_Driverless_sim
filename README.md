@@ -10,8 +10,10 @@ To use as is of 26/8/2020,
 6: In the tracks folder, copy all folders (acceleration, big_track, skidpad, small_track)  
 7. Paste these in ~/Home/.gazebo/models/  
 8: now copy the 'urdf', 'worlds', 'meshes' and 'launch' folders from the downloaded depository  
-9: paste them in 'your_workspace'/src/catvehicle and overwrite the folders that are named identicly, you may need to delete them first  
-10: you should be good to launch them now  
+9: paste them in 'your_workspace'/src/catvehicle and overwrite the folders that are named identicly, you may need to delete them first 
+10: use the comand, sudo apt-get install ros-melodic-velodyne-gazebo-plugins
+11: use the command sudo apt-get install ros-melodic--hector-gazebo-plugins
+12: you should be good to launch them now  
 
 # Launching and running model with gazebo:  
 1: Open a terminal and run, $ roscore  
